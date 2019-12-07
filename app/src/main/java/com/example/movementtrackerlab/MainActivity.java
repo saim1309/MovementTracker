@@ -28,13 +28,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         yValue =findViewById(R.id.tvYvalue);
         zValue =findViewById(R.id.tvZvalue);
 
+        //getting permission from sensor permission from sensor manager
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        //setting sensor type as accelerometer
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //register listener fot the sensor
         sensorManager.registerListener(MainActivity.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        //in SensorEvent arrray, we get the x index at 0 index, y index at 1st and z at 2nd index
         xValue.setText("X Value: "+ sensorEvent.values[0]);
         yValue.setText("Y Value: "+ sensorEvent.values[1]);
         zValue.setText("Z Value: "+ sensorEvent.values[2]);
